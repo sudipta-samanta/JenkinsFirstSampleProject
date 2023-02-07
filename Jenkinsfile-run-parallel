@@ -1,20 +1,42 @@
 pipeline {
-  agent any
+  agent none
   stages {
-    parallel {
-      stage('stage 1') {
-        steps {
-          echo 'Running stage 1'
+    stage('Build') {
+      parallel {
+        stage('build in OS-1') {
+          agent any
+          steps {
+            echo 'building in OS 1'
+          }
+        }
+        stage('build in OS-2') {
+          agent any
+          steps {
+            echo 'building in OS 2'
+          }
+        }
+        stage('build in OS-3') {
+          agent any
+          steps {
+            echo 'building in OS 3'
+          }
         }
       }
-      stage('stage 2') {
-        steps {
-          echo 'Running stage 2'
+    }
+
+    stage('Test') {
+      parallel {
+        stage('test in OS-1') {
+          agent any
+          steps {
+            echo 'test in OS 1'
+          }
         }
-      }
-      stage('stage 3') {
-        steps {
-          echo 'Running stage 3'
+        stage('test in OS-2') {
+          agent any
+          steps {
+            echo 'test in OS 2'
+          }
         }
       }
     }
