@@ -1,54 +1,49 @@
 pipeline {
   agent none
   stages {
-    stage('build and run') {
+    stage('Build & run') {
       parallel {
-        stage('linux-armv6') {
-          agent {label 'linux-armv6'}
+        stage('OS-1') {
+          agent any
           stages {
             stage('build') {
               steps {
-                sh 'go install dpctl'
+                echo 'building in OS 1'
               }
             }
             stage('run') {
               steps {
-                sh 'dpctl'
+                checkout scm
+                echo 'running in OS 1'
               }
             }
           }
         }
-        stage('linux-amd64') {
-          agent {label 'linux-amd64'}
+
+        stage('OS-2') {
+          agent any
           stages {
             stage('build') {
               steps {
-                sh 'go install dpctl'
+                echo 'building in OS 2'
               }
             }
             stage('run') {
               steps {
-                sh 'dpctl'
+                checkout scm
+                echo 'running in OS 2'
               }
             }
           }
-        }      
-        stage('darwin-amd64') {
-          agent {label 'darwin-amd64'}
-          stages {
-            stage('build') {
-              steps {
-                sh 'go install dpctl'
-              }
-            }
-            stage('run') {
-              steps {
-                sh 'dpctl'
-              }
-            }
-          }
-        }      
+        }
       }
     }
   }
+}
+
+post {
+  always {
+    echo 'Always Running...'
+  }
+}
 }
