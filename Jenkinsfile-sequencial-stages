@@ -11,10 +11,10 @@ pipeline {
                 echo 'building in OS 1'
               }
             }
-            stage('build') {
+            stage('run') {
               steps {
                 checkout scm
-                echo 'building in OS 1'
+                echo 'running in OS 1'
               }
             }
           }
@@ -24,13 +24,13 @@ pipeline {
             stages {
               stage('build') {
                 steps {
-                  echo 'building in OS 1'
+                  echo 'building in OS 2'
                 }
               }
-              stage('build') {
+              stage('run') {
                 steps {
                   checkout scm
-                  echo 'building in OS 1'
+                  echo 'running in OS 2'
                 }
               }
             }
