@@ -13,7 +13,6 @@ pipeline {
             }
             stage('run') {
               steps {
-                checkout scm
                 echo 'running in OS 1'
               }
             }
@@ -30,7 +29,6 @@ pipeline {
             }
             stage('run') {
               steps {
-                checkout scm
                 echo 'running in OS 2'
               }
             }
