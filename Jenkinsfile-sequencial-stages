@@ -37,10 +37,10 @@ pipeline {
       }
     }
   }
-}
 
-post {
-  always {
-    echo 'Always Running...'
+  post {
+    always {
+      echo 'Always Running...'
+    }
   }
 }
