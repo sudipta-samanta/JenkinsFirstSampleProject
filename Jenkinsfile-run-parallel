@@ -1,23 +1,29 @@
 pipeline {
   agent none
+  options {
+    skipDefaultCheckout true
+  }
   stages {
     stage('Build') {
       parallel {
         stage('build in OS-1') {
           agent any
           steps {
+            checkout scm
             echo 'building in OS 1'
           }
         }
         stage('build in OS-2') {
           agent any
           steps {
+            checkout scm
             echo 'building in OS 2'
           }
         }
         stage('build in OS-3') {
           agent any
           steps {
+            checkout scm
             echo 'building in OS 3'
           }
         }
